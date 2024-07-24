@@ -62,13 +62,21 @@ public class App {
 
             // 결과 출력후 배열에 저장, index 값 증가
             System.out.println("결과: " + result);
-            resultArray[index++] = result;
 
-            System.out.println(Arrays.toString(resultArray));
+
+            // 오래된 데이터 삭제를 위한 조건문, 반복문
+            if (index == resultArray.length) {
+                for (int i = 0; i < (resultArray.length - 1); i++) {
+                    resultArray[i] = resultArray[i + 1];
+                }
+                index = --index;
+            }
+            resultArray[index++] = result;
 
             // 계산기 종료를 위한 flag 입력
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             flag = sc.nextLine();
+
         }
     }
 }
