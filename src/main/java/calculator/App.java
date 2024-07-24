@@ -1,20 +1,27 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
 
+        // 입력을 위한 Scanner 생성
+        Scanner sc = new Scanner(System.in);
+
+        // 첫번째 숫자, 두번째 숫자, 연산기호, 결과
         double num1;
         double num2;
         char operator;
         double result;
 
+        // 연산 결과를 저장하는 배열
+        double[] resultArray = new double[10];
+        int index = 0;
+
         // 첫번째 연산을 위한 초기화
         String flag = "연산";
-
-        Scanner sc = new Scanner(System.in);
 
         // flag에 exit가 입력되었을때 까지 반복
         while (!flag.equals("exit")) {
@@ -53,12 +60,15 @@ public class App {
                     break;
             }
 
+            // 결과 출력후 배열에 저장, index 값 증가
             System.out.println("결과: " + result);
+            resultArray[index++] = result;
+
+            System.out.println(Arrays.toString(resultArray));
 
             // 계산기 종료를 위한 flag 입력
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료)");
             flag = sc.nextLine();
         }
-
     }
 }
