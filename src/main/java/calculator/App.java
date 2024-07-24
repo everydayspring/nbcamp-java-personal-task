@@ -71,6 +71,15 @@ public class App {
                 resultQueue.poll();
             }
 
+            // 연산 결과 전체 조회
+            System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회) : ");
+            if(sc.nextLine().equals("inquiry")) {
+                for(double res: resultQueue) {
+                    System.out.print(res + " ");
+                }
+                System.out.println();
+            }
+
             // 계산기 종료를 위한 flag 입력
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             flag = sc.nextLine();
