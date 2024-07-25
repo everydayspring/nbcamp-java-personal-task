@@ -47,7 +47,7 @@ public class App {
                 // 가장 오래된 연산 결과 삭제
                 System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제) : ");
                 if (sc.nextLine().equals("remove")) {
-                    calc.getResultQueue().poll();
+                    calc.removeResult();
                 }
 
                 // 연산 결과 전체 조회

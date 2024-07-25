@@ -46,4 +46,8 @@ public class Calculator {
     public void setResultQueue(Queue<Double> resultQueue) {
         this.resultQueue = resultQueue;
     }
+
+    public void removeResult() {
+        resultQueue.poll();
+    }
 }
