@@ -1,12 +1,12 @@
 package calculator;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
+        // Calculator 인스턴스 생성
+        Calculator calc = new Calculator();
 
         // 입력을 위한 Scanner 생성
         Scanner sc = new Scanner(System.in);
@@ -15,17 +15,13 @@ public class App {
         double num1;
         double num2;
         char operator;
-        double result;
-
-        // 연산 결과를 저장하는 Queue
-        Queue<Double> resultQueue = new LinkedList<>();
+        double result = 0;
 
         // 첫번째 연산을 위한 초기화
         String flag = "연산";
 
         // flag에 exit가 될 때까지 반복
         while (!flag.equals("exit")) {
-
 
             // Scanner에서 nextInt()와 nextLine() 사용시 공란 입력 방지를 위해 parser 사용
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -37,48 +33,32 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             operator = sc.nextLine().charAt(0);
 
-            // 결과값 변수 초기화
-            result = 0;
+            // Exception이 발생할 수 있는 코드를 try-catch 문으로 감싸줌
+            try {
+                // Calculator 클래스의 calculate 메소드를 사용하여 연산
+                result = calc.calculate(num1, num2, operator);
 
-            // 스위치문을 사용한 연산
-            switch (operator) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    // 두번째 숫자 0에 대한 나눗셈 예외처리
-                    if (num2 == 0) {
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. ");
-                        break;
-                    }
-                    result = num1 / num2;
-                    break;
-            }
-
-            // 결과 출력후 Queue에 저장
-            System.out.println("결과: " + result);
-            resultQueue.add(result);
+                // 결과 출력후 Queue에 저장
+                System.out.println("결과: " + result);
+                calc.resultQueue.add(result);
 
 
-            // 가장 오래된 연산 결과 삭제
-            System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제) : ");
-            if(sc.nextLine().equals("remove")) {
-                resultQueue.poll();
-            }
-
-            // 연산 결과 전체 조회
-            System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회) : ");
-            if(sc.nextLine().equals("inquiry")) {
-                for(double res: resultQueue) {
-                    System.out.print(res + " ");
+                // 가장 오래된 연산 결과 삭제
+                System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제) : ");
+                if (sc.nextLine().equals("remove")) {
+                    calc.resultQueue.poll();
                 }
-                System.out.println();
+
+                // 연산 결과 전체 조회
+                System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회) : ");
+                if (sc.nextLine().equals("inquiry")) {
+                    for (double res : calc.resultQueue) {
+                        System.out.print(res + " ");
+                    }
+                    System.out.println();
+                }
+            } catch (CalculatorException e) {
+                System.out.println(e.getMessage());
             }
 
             // 계산기 종료를 위한 flag 입력
