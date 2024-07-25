@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    Queue<Double> resultQueue = new LinkedList<>();
+    // private 캡슐화
+    private Queue<Double> resultQueue = new LinkedList<>();
 
     // calculate 메소드에서는 CalculatorException가 발생할 수 있다
     public double calculate(double num1, double num2, char operator) throws CalculatorException {
@@ -36,4 +37,13 @@ public class Calculator {
         return result;
     }
 
+    // Getter
+    public Queue<Double> getResultQueue() {
+        return resultQueue;
+    }
+
+    // Setter
+    public void setResultQueue(Queue<Double> resultQueue) {
+        this.resultQueue = resultQueue;
+    }
 }

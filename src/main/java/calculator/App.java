@@ -39,20 +39,21 @@ public class App {
                 result = calc.calculate(num1, num2, operator);
 
                 // 결과 출력후 Queue에 저장
+                // 캡슐화 된 resultQueue에 직접 접근 할 수 없기 때문에 getter 함수 사용
                 System.out.println("결과: " + result);
-                calc.resultQueue.add(result);
+                calc.getResultQueue().add(result);
 
 
                 // 가장 오래된 연산 결과 삭제
                 System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제) : ");
                 if (sc.nextLine().equals("remove")) {
-                    calc.resultQueue.poll();
+                    calc.getResultQueue().poll();
                 }
 
                 // 연산 결과 전체 조회
                 System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회) : ");
                 if (sc.nextLine().equals("inquiry")) {
-                    for (double res : calc.resultQueue) {
+                    for (double res : calc.getResultQueue()) {
                         System.out.print(res + " ");
                     }
                     System.out.println();
