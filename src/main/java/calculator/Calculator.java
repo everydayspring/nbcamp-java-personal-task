@@ -50,4 +50,13 @@ public class Calculator {
     public void removeResult() {
         resultQueue.poll();
     }
+
+    public void inquiryResults() {
+
+        for (double res : resultQueue) {
+            System.out.print(res + " ");
+        }
+        System.out.println();
+
+    }
 }

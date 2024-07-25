@@ -35,6 +35,7 @@ public class App {
 
             // Exception이 발생할 수 있는 코드를 try-catch 문으로 감싸줌
             try {
+
                 // Calculator 클래스의 calculate 메소드를 사용하여 연산
                 result = calc.calculate(num1, num2, operator);
 
@@ -53,13 +54,13 @@ public class App {
                 // 연산 결과 전체 조회
                 System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회) : ");
                 if (sc.nextLine().equals("inquiry")) {
-                    for (double res : calc.getResultQueue()) {
-                        System.out.print(res + " ");
-                    }
-                    System.out.println();
+                    calc.inquiryResults();
                 }
+
             } catch (CalculatorException e) {
+
                 System.out.println(e.getMessage());
+
             }
 
             // 계산기 종료를 위한 flag 입력
