@@ -18,13 +18,14 @@ public class App {
         double result;
 
         // 연산 결과를 저장하는 Queue
-        Queue<Double> resultQueue = new LinkedList<Double>();
+        Queue<Double> resultQueue = new LinkedList<>();
 
         // 첫번째 연산을 위한 초기화
         String flag = "연산";
 
         // flag에 exit가 될 때까지 반복
         while (!flag.equals("exit")) {
+
 
             // Scanner에서 nextInt()와 nextLine() 사용시 공란 입력 방지를 위해 parser 사용
             System.out.print("첫 번째 숫자를 입력하세요: ");
