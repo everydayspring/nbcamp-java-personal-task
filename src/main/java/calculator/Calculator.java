@@ -5,7 +5,11 @@ import java.util.Queue;
 
 public class Calculator {
     // private 캡슐화
-    private Queue<Double> resultQueue = new LinkedList<>();
+    private Queue<Double> resultQueue;
+
+    public Calculator() {
+        resultQueue = new LinkedList<>();
+    }
 
     // calculate 메소드에서는 CalculatorException가 발생할 수 있다
     public double calculate(double num1, double num2, char operator) throws CalculatorException {
