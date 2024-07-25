@@ -5,10 +5,16 @@ import java.util.Queue;
 
 public class Calculator {
     // private 캡슐화
-    private Queue<Double> resultQueue;
+    // static으로 선언된 클래스 멤버, 저장공간 면에서 효율적이다
+    // 값이 수정되면 안되는 PI 변수는 final로 선언
+    private static Queue<Double> calcResultQueue;
+    private static Queue<Double> areaResultQueue;
+
+    static final double PI = 3.14159265358979323846;
 
     public Calculator() {
-        resultQueue = new LinkedList<>();
+        calcResultQueue = new LinkedList<>();
+        areaResultQueue = new LinkedList<>();
     }
 
     // calculate 메소드에서는 CalculatorException가 발생할 수 있다
@@ -41,26 +47,43 @@ public class Calculator {
         return result;
     }
 
-    // Getter
-    public Queue<Double> getResultQueue() {
-        return resultQueue;
-    }
-
-    // Setter
-    public void setResultQueue(Queue<Double> resultQueue) {
-        this.resultQueue = resultQueue;
-    }
-
     public void removeResult() {
-        resultQueue.poll();
+        calcResultQueue.poll();
     }
 
-    public void inquiryResults() {
+    public void inquiryResults(Queue<Double> queue) {
 
-        for (double res : resultQueue) {
+        System.out.println();
+        System.out.println("---- 연산 결과 전체 조회 ----");
+
+        for (double res : queue) {
             System.out.print(res + " ");
         }
         System.out.println();
+        System.out.println("------------------------");
 
     }
+
+    public double calculateCircleArea(double redius) {
+        return PI * redius * redius;
+    }
+
+    // Getter
+    public Queue<Double> getCalcResultQueue() {
+        return calcResultQueue;
+    }
+
+    // Setter
+    public void setCalcResultQueue(Queue<Double> resultQueue) {
+        this.calcResultQueue = resultQueue;
+    }
+
+    public Queue<Double> getAreaResultQueue() {
+        return areaResultQueue;
+    }
+
+    public void setAreaResultQueue(Queue<Double> areaResultQueue) {
+        this.areaResultQueue = areaResultQueue;
+    }
+
 }
