@@ -5,9 +5,17 @@ import java.util.Queue;
 
 public class ArithmeticCalculator extends Calculator {
     private static Queue<Double> resultQueue;
+    AddOperator addOperator;
+    SubtractOperator subtractOperator ;
+    MultiplyOperator multiplyOperator;
+    DivideOperator divideOperator;
 
     ArithmeticCalculator() {
         resultQueue = new LinkedList<>();
+        addOperator = new AddOperator();
+        subtractOperator = new SubtractOperator();
+        multiplyOperator = new MultiplyOperator();
+        divideOperator = new DivideOperator();
     }
 
     // calculate 메소드에서는 CalculatorException가 발생할 수 있다
@@ -16,13 +24,13 @@ public class ArithmeticCalculator extends Calculator {
 
         switch (operator) {
             case '+':
-                result = num1 + num2;
+                result = addOperator.add(num1, num2);
                 break;
             case '-':
-                result = num1 - num2;
+                result = subtractOperator.subtract(num1, num2);
                 break;
             case '*':
-                result = num1 * num2;
+                result = multiplyOperator.multiply(num1, num2);
                 break;
             case '/':
                 // 두번째 숫자 0에 대한 나눗셈 예외처리
@@ -30,7 +38,7 @@ public class ArithmeticCalculator extends Calculator {
                     // CalculatorException 발생
                     throw new CalculatorException("Division by zero");
                 }
-                result = num1 / num2;
+                result = divideOperator.divide(num1, num2);
                 break;
             default:
                 // CalculatorException 발생
