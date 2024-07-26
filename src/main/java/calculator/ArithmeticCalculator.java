@@ -9,6 +9,7 @@ public class ArithmeticCalculator extends Calculator {
     SubtractOperator subtractOperator ;
     MultiplyOperator multiplyOperator;
     DivideOperator divideOperator;
+    ModOperator modOperator;
 
     ArithmeticCalculator() {
         resultQueue = new LinkedList<>();
@@ -16,6 +17,7 @@ public class ArithmeticCalculator extends Calculator {
         subtractOperator = new SubtractOperator();
         multiplyOperator = new MultiplyOperator();
         divideOperator = new DivideOperator();
+        modOperator = new ModOperator();
     }
 
     // calculate 메소드에서는 CalculatorException가 발생할 수 있다
@@ -39,6 +41,14 @@ public class ArithmeticCalculator extends Calculator {
                     throw new CalculatorException("Division by zero");
                 }
                 result = divideOperator.divide(num1, num2);
+                break;
+            case '%':
+                // 두번째 숫자 0에 대한 나눗셈 예외처리
+                if (num2 == 0) {
+                    // CalculatorException 발생
+                    throw new CalculatorException("Division by zero");
+                }
+                result = modOperator.mod(num1, num2);
                 break;
             default:
                 // CalculatorException 발생
